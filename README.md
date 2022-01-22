@@ -42,7 +42,7 @@ Disable bridging by passing `ZT_BRIDGE=false`. This can be done after the initia
 
 If you would like the container to retain the same ZeroTier client ID on reboot, attach a volume as per the below.
 
-`docker run --privileged -e ZT_NETWORKS=NETWORK_ID_HERE ZT_BRIDGE=true --volume zt1:/var/lib/zerotier-one/ zerotierbridge:latest`
+`docker run --privileged -e ZT_NETWORKS=NETWORK_ID_HERE -e ZT_BRIDGE=true --volume zt1:/var/lib/zerotier-one/ zerotierbridge:latest`
 
 #### Caveat: Architecture
 
