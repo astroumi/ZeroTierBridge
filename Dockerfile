@@ -7,7 +7,7 @@ RUN curl -sSL -o zerotier-one.deb "${PACKAGE_BASEURL}/zerotier-one_${VERSION}_${
 
 FROM debian:buster
 COPY --from=stage zerotier-one.deb .
-RUN apt-get update -qq && apt-get install -qq --no-install-recommends -y procps=2:3.3.15-2 iptables=1.8.2-4 \
+RUN apt-get update -qq && apt-get install -qq --no-install-recommends -y procps iptables \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 RUN dpkg -i zerotier-one.deb && rm -f zerotier-one.deb
