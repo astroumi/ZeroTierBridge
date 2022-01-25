@@ -7,7 +7,7 @@ RUN curl -sSL -o zerotier-one.deb "${PACKAGE_BASEURL}/zerotier-one_${VERSION}_${
 
 FROM debian:bullseye
 COPY --from=stage zerotier-one.deb .
-RUN apt-get update -qq && apt-get install -qq --no-install-recommends -y procps iptables \
+RUN apt-get update -qq && apt-get install -qq --no-install-recommends -y procps iptables iproute2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 RUN dpkg -i zerotier-one.deb && rm -f zerotier-one.deb
