@@ -1,4 +1,4 @@
-FROM debian:buster as stage
+FROM debian:bullseye as stage
 ARG PACKAGE_BASEURL=https://download.zerotier.com/debian/buster/pool/main/z/zerotier-one
 ARG ARCH=amd64
 ARG VERSION=1.8.4
