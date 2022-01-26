@@ -32,7 +32,7 @@ do
   if [ "$ZT_BRIDGE" = "true" ]
   then
     echo "Configuring iptables on $(zerotier-cli get $n portDeviceName)"
-    PHY_IFACE=eth0; ZT_IFACE=$(zerotier-cli get $n portDeviceName)
+    PHY_IFACE=ovs_eth0; ZT_IFACE=$(zerotier-cli get $n portDeviceName)
 
     iptables -t nat -A POSTROUTING -o $PHY_IFACE -j MASQUERADE
     iptables -t nat -A POSTROUTING -o $ZT_IFACE -j MASQUERADE
