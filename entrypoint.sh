@@ -35,9 +35,13 @@ do
     PHY_IFACE=ovs_eth0; ZT_IFACE=$(zerotier-cli get $n portDeviceName)
 
     iptables -t nat -A POSTROUTING -o $PHY_IFACE -j MASQUERADE
+    #nft add rule ip nat POSTROUTING oifname "$PHY_IFACE" counter masquerade
     iptables -t nat -A POSTROUTING -o $ZT_IFACE -j MASQUERADE
+    #nft add rule ip nat POSTROUTING oifname "$ZT_IFACE" counter masquerade
     iptables -A FORWARD -i $PHY_IFACE -o $ZT_IFACE -j ACCEPT
+    #nft add rule ip filter FORWARD iifname "$PHY_IFACE" oifname "$ZT_IFACE" counter accept
     iptables -A FORWARD -i $ZT_IFACE -o $PHY_IFACE -j ACCEPT
+    #nft add rule ip filter FORWARD iifname "$ZT_IFACE" oifname "$PHY_IFACE" counter accept
   fi
 done
 
